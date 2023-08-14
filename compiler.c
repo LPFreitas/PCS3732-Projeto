@@ -68,8 +68,23 @@ void infixToPostfix(char *infix, char *postfix) {
     for (int i = 0; i < length; i++) {
         char c = infix[i];
 
-        if (isdigit(c)) {
-            postfix[postfixIndex++] = c;
+        if (isspace(c)) {
+            continue; // Ignorar espaços em branco
+        } else if (isdigit(c)) {
+            // Para números com mais de um algarismo
+            while (i < length && (isdigit(infix[i]))) {
+                postfix[postfixIndex++] = infix[i++];
+            }
+            postfix[postfixIndex++] = ' ';
+            i--; // Decrementar i pois o loop principal também incrementa
+
+        } else if (c == '-' && isdigit(infix[i+1])) {
+            postfix[postfixIndex++] = infix[i++];
+            while (i < length && (isdigit(infix[i]))) {
+                postfix[postfixIndex++] = infix[i++];
+            }
+            postfix[postfixIndex++] = ' ';
+            i--; // Decrementar i pois o loop principal também incrementa
         } else if (c == '(') {
             push(&operatorStack, c);
         } else if (c == ')') {
@@ -112,9 +127,27 @@ void generateARMCode(char *postfix) {
         char c = postfix[i];
 
         if (isdigit(c)) {
-            // Converte o caractere numérico em número inteiro
-            int num = c - '0';
-            // Empilha o número na pilha
+            int num = 0;
+            while (i < length && (isdigit(postfix[i]))) {
+                num = num * 10 + (postfix[i] - '0');
+                i++;
+            }
+            i--; // Decrementar i pois o loop principal também incrementa
+
+            push(&operandStack, num);
+            ARMStackLength += 1;
+            fprintf(outputFile, "\tmov r0, #%d\n", num);
+            fprintf(outputFile, "\tstr r0, [sp, #-%d]!\n", ARMStackLength * 4);
+        } else if (c == '-' && isdigit(postfix[i + 1])) {
+            int num = 0;
+            i++;
+            while (i < length && (isdigit(postfix[i]))) {
+                num = num * 10 + (postfix[i] - '0');
+                i++;
+            }
+            num = -num;
+            i--; // Decrementar i pois o loop principal também incrementa
+
             push(&operandStack, num);
             ARMStackLength += 1;
             fprintf(outputFile, "\tmov r0, #%d\n", num);
@@ -151,7 +184,7 @@ void generateARMCode(char *postfix) {
     }
 
     // O resultado final estará no topo da pilha
-    pop(&operandStack);
+    printf("resultado: %d\n", pop(&operandStack));
     
     fprintf(outputFile, "\tldr r0, [sp], #4\n");
     fprintf(outputFile, "fim:\n");
@@ -168,7 +201,7 @@ int main() {
     }
 
     char infixExpression[MAX_SIZE];
-    fscanf(inputFile, "%s", infixExpression);
+    fgets(infixExpression, MAX_SIZE, inputFile);
 
     fclose(inputFile);
 
