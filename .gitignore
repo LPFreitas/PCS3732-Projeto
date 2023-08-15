@@ -1,0 +1,6 @@
+.vscode
+*.o
+*.s
+compiler
+kernel.elf
+kernel.map
