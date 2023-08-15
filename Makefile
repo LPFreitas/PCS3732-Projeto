@@ -49,4 +49,6 @@ gdb: ${EXEC_AS}
 				  -ex "load" \
 				  -ex "layout src" \
 				  -ex "layout regs" \
+				  -ex "b end" \
+				  -ex "c" \
 				  ${EXEC_AS}
