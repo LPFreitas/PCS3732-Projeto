@@ -96,7 +96,7 @@ end:
 	b end
 ```
 
-Além disso, imprimem-se a expressão aritmética inserida, a expressão convertida para notação pós-fixa, a sequência de operações interias realizadas e o resultado final:
+Além disso, imprimem-se a expressão aritmética inserida, a expressão convertida para notação pós-fixa, a sequência de operações inteiras realizadas e o resultado final:
 
 ![resultado-compilador](resultado-compilador.png)
 
