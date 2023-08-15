@@ -1,4 +1,5 @@
 # Makefile
+INPUT = input.txt
 FONTE_AS = output.s
 FONTE_C = compiler.c
 
@@ -16,7 +17,7 @@ OBJETO_AS = $(FONTE_AS:.s=.o)
 all: ${EXEC_C} ${FONTE_AS} ${EXEC_AS}
 
 # Gerar executável C
-${EXEC_C}: ${FONTE_C}
+${EXEC_C}: ${FONTE_C} ${INPUT}
 	gcc $(FONTE_C) -o ${EXEC_C}
 
 # Executar executável C

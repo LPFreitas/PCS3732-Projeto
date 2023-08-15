@@ -292,6 +292,7 @@ int main()
 
     char infixExpression[MAX_SIZE];
     fgets(infixExpression, MAX_SIZE, inputFile);
+    printf("Expressão aritmética fornecida: %s\n", infixExpression);
 
     fclose(inputFile);
 

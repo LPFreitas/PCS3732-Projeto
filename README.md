@@ -8,7 +8,7 @@
 - Vinícius Barros Alvarenga (11257564)
 - Yuri de Sene Alvizi (11260398)
 
-### <u>Passo-a-passo de execução</u>:
+### <u>Passo a passo de execução</u>:
 
 1. Insira no arquivo `input.txt` a expressão aritmética de operandos inteiros (em binário de no máximo 12 bits) com parênteses **'('** e **')'** e com os operadores **'+'**, **'-'**, **'\*'** e **'/'**, mantendo os operandos separados dos operadores por espaços **' '**.
 
@@ -36,4 +36,4 @@ make qemu
 make gdb
 ```
 
-O resultado da execução do código _assembly_ ARMv7 está no registrador **r0**.
+O resultado da expressão aritmética calculada pelo código _assembly_ ARMv7 está no registrador **r0**.
