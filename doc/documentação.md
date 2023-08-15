@@ -25,7 +25,7 @@ Para a compilação do código desenvolvido é usado o compilador da linguagem C
 
 Para a execução do compilador são necessários os seguintes passos em sequência:
 
-1. Insira no arquivo `input.txt` a expressão aritmética de operandos inteiros (em binário de no máximo 12 bits) com parênteses **'('** e **')'** e com os operadores **'+'**, **'-'**, **'\*'** e **'/'**, mantendo os operandos separados dos operadores por espaços **' '**.
+1. Insira no arquivo `input.txt` a expressão aritmética de operandos inteiros com parênteses **'('** e **')'** e com os operadores **'+'**, **'-'**, **'\*'** e **'/'**, mantendo os operandos separados dos operadores por espaços **' '**.
 
 2. A seguir, para compilar o código do compilador `compiler.c`, executá-lo e, assim, gerar o código _assembly_ ARMv7 correspondente à expressão aritmética fornecida no arquivo `output.s`, execute o seguinte comando no terminal:
 
